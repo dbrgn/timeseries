@@ -3,3 +3,16 @@ influxdb:
   ports:
     - 127.0.0.1:8083:8083
     - 127.0.0.1:8086:8086
+
+grafana:
+  image: grafana/grafana
+  ports:
+    - 127.0.0.1:3000:3000
+  environment:
+    GF_DATABASE_TYPE: sqlite3
+    GF_SECURITY_ADMIN_USER: r00t
+    GF_SECURITY_ADMIN_PASSWORD: r00t
+    GF_SECURITY_SECRET_KEY: changeme
+    GF_USERS_ALLOW_SIGN_UP: false
+  links:
+    - influxdb
